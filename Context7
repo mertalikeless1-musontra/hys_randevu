@@ -1,0 +1,24 @@
+# Context7: Randevu Yönetim Sistemi (HYS) Proje Bağlamı
+# Bu dosya, YZ Temsilcilerine (LLMs) proje hakkındaki temel bilgileri sağlar.
+
+[PROJE_ADI]
+Hastane Randevu Yönetim Sistemi (HYS) - API
+
+[MİMARİ]
+- **Yapı**: Monolithic API (Ruby on Rails 8 API-only)
+- **Veritabanı**: PostgreSQL
+- **Frontend Bağlantısı**: JSON API üzerinden Traditional React Development ile iletişim kurulacak.
+
+[TEMEL_İŞ_MANTIĞI]
+1. **Randevu Süresi**: Tüm randevular **30 dakikalık bloklar** halinde kabul edilir.
+2. **Çakışma Kontrolü**: Bir doktorun, aynı zaman dilimi içinde (scheduled_at) başka bir randevusu **olamaz**.
+3. **Randevu Durumları**: Randevular, başlangıçta 'beklemede', daha sonra 'onaylandı', 'iptal edildi' durumlarını alabilir.
+
+[ANA_VARLIKLAR]
+- **Doctor**: name, specialty (Doktorun müsaitliği kontrol edilmeli).
+- **Patient**: name, surname, tc_no (Benzersiz olmalıdır).
+- **Appointment**: scheduled_at, doctor_id, patient_id.
+
+[ÖNEMLİ_GEREKSİNİMLER]
+- **Güvenlik**: Tüm hassas API uç noktaları için JWT (JSON Web Token) ile yetkilendirme zorunludur.
+- **Raporlama**: Yöneticiler için raporlama yapılabilmelidir (Doktor müsaitlik ve randevu yoğunluğu).

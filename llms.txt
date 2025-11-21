@@ -1,0 +1,17 @@
+# llms.txt: AI Kodlama ve Süreç Kılavuzu
+# Bu talimatlar YZ tarafından üretilen her kod bloğu ve süreç için geçerlidir.
+
+[KOD_STANDARTLARI]
+1. **Ruby İdiomları**: Her zaman idiomatik Ruby ve Rails pratikleri kullanılmalıdır.
+2. **Test-Driven (TDD/BDD)**: Üretilen her Controller veya Model aksiyonu için ilgili **RSpec testleri** (TDD) ve kullanıcı davranışı için **Cucumber senaryoları** (BDD) eş zamanlı olarak yazılmalıdır[cite: 73, 74].
+3. **Hata Yönetimi**: Controller'lar, başarısız işlemler ve iş mantığı ihlallerinde her zaman uygun HTTP durum kodlarını (örn. 422 Unprocessable Entity, 404 Not Found) döndürmelidir[cite: 67].
+4. **Kod Yeniden Kullanımı**: Karmaşık iş mantığı (örn. müsaitlik kontrolü) Controller'larda değil, ayrı **Service Objelerinde** veya Model **Scope**'larında tutulmalıdır.
+
+[SÜREÇ_KURALLARI]
+1. **Debugging**: Geliştirme sırasında `binding.irb` kullanılmalı, `pry` veya `puts` kullanılmamalıdır.
+2. **Bağımlılıklar**: Yeni bir Gem eklenmeden önce Manager Temsilciye sorulmalıdır.
+3. **Prompt Engineering**: Spesifik bir görevde tıkanılırsa (hata alınırsa) **hata çıktısı** ile birlikte yeniden prompt verilmelidir.
+
+[SÜRÜMLEME ve DOKÜMANTASYON]
+- **Semantic Versioning (SemVer)**: API versiyonlamada SemVer (MAJOR.MINOR.PATCH) stratejisi zorunludur. Geriye dönük uyumsuzluk (breaking change) olduğunda MAJOR versiyon artırılmalıdır[cite: 50, 51].
+- **Test Otomasyonu**: Postman Collections'da pre-request ve post-response scriptleri Codex/LLM ile üretilerek **otomatize test senaryoları** oluşturulmalıdır[cite: 75].

@@ -1,0 +1,36 @@
+# requirements.poml
+# Project Object Markup Language - HYS Appointment System
+
+project:
+  name: "HYS Randevu API"
+  version: "1.0.0"
+  stack: ["Rails 8 API", "PostgreSQL", "RSpec", "Cucumber"]
+
+specs:
+  - id: APT-001
+    title: "Appointment Creation"
+    priority: critical
+    actor: "Patient"
+    description: >
+      Hastalar, sistem üzerinden müsait doktorlardan randevu alabilmelidir.
+      Sistem, çakışan randevuları (Conflict) engellemelidir.
+    rules:
+      - "Randevu süresi sabit 30 dakikadır."
+      - "Aynı doktora aynı saatte (scheduled_at) ikinci randevu verilemez."
+      - "Geçmiş bir tarihe randevu alınamaz."
+    api_endpoint: "POST /api/v1/appointments"
+    success_criteria:
+      - "Başarılı kayıt durumunda HTTP 201 Created döner."
+      - "Çakışma durumunda HTTP 422 Unprocessable Entity döner."
+
+  - id: APT-002
+    title: "Doctor Availability"
+    priority: high
+    actor: "System"
+    description: "Belirli bir tarih aralığındaki müsait doktorları listeleme."
+    api_endpoint: "GET /api/v1/doctors/available"
+    status: "pending_implementation"
+
+context_integration:
+  llm_strategy: "Vibe Coding"
+  testing_strategy: "BDD via Cucumber"
