@@ -50,7 +50,7 @@ group :development, :test do
 
   # --- EKLENEN TEST ARAÇLARI (Sınav Soru 2a gereği) ---
   # TDD (Test Driven Development) için RSpec
-  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-rails', '~> 8.0'
 
   # BDD (Behaviour Driven Development) için Cucumber
   gem 'cucumber-rails', require: false
