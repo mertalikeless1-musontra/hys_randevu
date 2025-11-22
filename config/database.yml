@@ -1,0 +1,46 @@
+# config/database.yml
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # Windows bağlantı ayarları (Burası kritik)
+  host: localhost
+  username: postgres
+  password: 12345
+  # Havuz boyutu ayarı
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: hys_randevu_api_development
+
+  # Eğer port farklıysa burayı açabilirsin ama genelde 5432'dir.
+  # port: 5432
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: hys_randevu_api_test
+
+# Production ayarları genellikle sunucudaki ortam değişkenlerinden (ENV) alınır.
+# Burayı şimdilik değiştirmene gerek yok.
+production:
+  primary: &primary_production
+    <<: *default
+    database: hys_randevu_api_production
+    username: hys_randevu_api
+    password: <%= ENV["HYS_RANDEVU_API_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: hys_randevu_api_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: hys_randevu_api_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: hys_randevu_api_production_cable
+    migrations_paths: db/cable_migrate
